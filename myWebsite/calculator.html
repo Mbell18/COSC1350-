@@ -2,17 +2,17 @@
 
 <!--
 	Student Name: Marissa Bell
-	File Name: index.html
-	Date:9/2/2024
+	File Name: calculator.html
+	Date: 10/6/2024
  -->
 
 <html lang="en">
 	<head>
-		<title>Personal Portfolio: Home</title>
+		<title>Personal Portfolio: Calculator</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://fonts.googleapis.com/css?family=Coustard:900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ultra&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
@@ -30,16 +30,41 @@
 				<li><a href="index.html">Home</a></li>
 				<li><a href="about.html">About Me</a></li>
 				<li><a href="contact.html">Contact</a></li>
-				<li><a href="calculator.html">Calculator</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
 			</ul>
 		</nav>
 
+    
+
 		<!-- Use the main area to add the main content of the webpage -->
 		<main>
+                
+		    <div class="a">
+                <p>Calculate Tip</p>
+                <label>Bill Amount &nbsp;<input name="billAmount" type= "text"
+                size="30" text-align="center"></label>
+            
 
-			<p>Hello! I'm Marissa Bell. Welcome to my personal portfolio.</p>
+        <br>
+            
 
-			<p>I created this website to display my talents, interests, and abilities.</p>
+                <label>Service Quality &nbsp;<select name="serviceQuality" >
+                    <option>Excellent (25%)</option>
+                    <option>Good (20%)</option>
+                    <option>Fair (15%)</option>
+                    <option>Poor (10%)</option>
+              
+                </select></label>
+        
+
+        <br>
+            
+            
+                 <input type="button" 
+    
+                onclick="alert('Calculating tip... This may take a moment.')" 
+                value="Calculate Tip">
+            </div>
 
 		</main>
 
