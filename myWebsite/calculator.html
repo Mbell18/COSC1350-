@@ -39,32 +39,50 @@
 		<!-- Use the main area to add the main content of the webpage -->
 		<main>
                 
-		    <div class="a">
-                <p>Calculate Tip</p>
-                <label>Bill Amount &nbsp;<input name="billAmount" type= "text"
-                size="30" text-align="center"></label>
+		    <div class="container">
+                <p>Tip Calculator</p>
+                <label>Bill Amount: &nbsp;<input type= "number"
+					id="billAmount"
+                size="30" placeholder="Provide the bill amount"></label>
             
+				
 
         <br>
             
+				
 
-                <label>Service Quality &nbsp;<select name="serviceQuality" >
-                    <option>Excellent (25%)</option>
-                    <option>Good (20%)</option>
-                    <option>Fair (15%)</option>
-                    <option>Poor (10%)</option>
+               		 <label>Service Quality:
+							<select id="serviceQuality">
+                    		<option value="0.25">Excellent (25%)</option>
+                    		<option value="0.2">Good (20%)</option>
+                    		<option value="0.15">Fair (15%)</option>
+                    		<option value="0.1">Poor (10%)</option>
               
-                </select></label>
-        
+               			 </select></label>
+		
 
-        <br>
+					<div class= "run">
             
+								<input type="button" id="calculate"
+						   value="Calculate Tip" onclick="calculateTip()">
+   
+					   </div>
+
+
+		
+				<div id="results">
+					<p id="tipAmount">Tip:</p>
+					<p id="totalAmount">Total:</p>
+					
+
+					</div>
+				
+
+		
+
+
+			</div>
             
-                 <input type="button" 
-    
-                onclick="alert('Calculating tip... This may take a moment.')" 
-                value="Calculate Tip">
-            </div>
 
 		</main>
 
@@ -75,6 +93,8 @@
 			</p>
 			
 		</footer>
+
+		<script src="calculateTip.js"></script>
 
 	</body>
 </html>
