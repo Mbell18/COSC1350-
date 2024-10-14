@@ -95,17 +95,71 @@ main p {
     
 }
 
-div.a {
-    text-align: center;
-    margin-left: 375px;
-    margin-right: 375px;
+div.container {
+    display:block;
+    text-align: left;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
     border: 5px solid #000000; 
-    padding-bottom: 3%;
+    padding:20px;
     border-width: 4px;
     background-color: #54afac;
+    border-radius: 7px;
     
 }
 
+div.run {
+    text-align: center;
+    margin-top: 25px;
+    
+
+
+}
+
+div.results {
+
+text-align: left;
+font-size: 25px;
+margin-top:25px;
+padding: 15px;
+
+
+}
+
+#tipAmount, #totalAmount {
+
+    text-align: left;
+    font-size: 25px;
+
+
+}
+
+#calculate {
+    background-color: #000000;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 4px;
+
+}
+
+#billAmount {
+
+padding: 8px 5px;
+font-size: 14px;
+border-radius: 5px;
+
+
+}
+
+#serviceQuality {
+margin-top: 20px;
+padding:8px 12px ;
+font-size:14px;
+border-radius: 5px;
+
+}
 
 .link {
     color: #364a36;
