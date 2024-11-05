@@ -2,13 +2,13 @@
 
 <!--
 	Student Name: Marissa Bell
-	File Name: calculator.html
-	Date: 10/6/2024
+	File Name: guessing.html
+	Date: 11/3/2024
  -->
 
 <html lang="en">
 	<head>
-		<title>Personal Portfolio: Calculator</title>
+		<title>Personal Portfolio: Template</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,60 +30,35 @@
 				<li><a href="index.html">Home</a></li>
 				<li><a href="about.html">About Me</a></li>
 				<li><a href="contact.html">Contact</a></li>
-                <li><a href="calculator.html">Calculator</a></li>
-				<li><a href="guessing.html">Guessing Game</a></li>
+				<li><a href="calculator.html">Calculator</a></li>
+                <li><a href="guessing.html">Guessing Game</a></li>
 			</ul>
 		</nav>
 
-    
-
 		<!-- Use the main area to add the main content of the webpage -->
 		<main>
+
+
+            <div class="gameHeading">
+                <h1>Number Guessing Game</h1>
                 
-		    <div class="container">
-                <p>Tip Calculator</p>
-                <label>Bill Amount: &nbsp;<input type= "number"
-					id="billAmount"
-                size="30" placeholder="Provide the bill amount"></label>
-            
-				
-
-        <br>
-            
-				
-
-               		 <label>Service Quality:
-							<select id="serviceQuality">
-                    		<option value="0.25">Excellent (25%)</option>
-                    		<option value="0.2">Good (20%)</option>
-                    		<option value="0.15">Fair (15%)</option>
-                    		<option value="0.1">Poor (10%)</option>
-              
-               			 </select></label>
-		
-
-					<div class= "run">
-            
-								<input type="button" id="calculate"
-						   value="Calculate Tip" onclick="calculateTip()">
-   
-					   </div>
+            </div>
 
 
-		
-				<div id="results">
-					<p id="tipAmount">Tip:</p>
-					<p id="totalAmount">Total:</p>
-					
-
-					</div>
-				
-
-		
+            <div class="gameContent">
+                <p>A random number between 1 and 100 has been selected. See if you
+                    can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+                <form id="guessForm">
+                    <label for="guessInput">Enter a guess:</label>
+                    <input type="number" id="guessInput" name="guess" min="0" required>
+                    <button type="submit">Submit Guess</button>
 
 
-			</div>
-            
+
+                </form>
+            </div>
+
+			
 
 		</main>
 
@@ -95,7 +70,7 @@
 			
 		</footer>
 
-		<script src="calculateTip.js"></script>
+        <script src="guessingGame.js"></script>
 
 	</body>
 </html>
