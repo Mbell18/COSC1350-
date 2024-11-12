@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!--
+	Student Name: Marissa Bell
+	File Name: canvasShapes.html
+	Date: 11/11/24
+ -->
+
+<html lang="en">
+	<head>
+		
+	</head>
+
+	<body>
+
+		<p>Here's a ...</p>
+       <canvas id="trapezoid" width="300" height="200"></canvas>
+		<p>Trapezoid!</p>
+
+
+		<script>
+			let trapCanvas = document.getElementById ("trapezoid");
+			let context = trapCanvas.getContext ("2d");
+
+			context.beginPath();
+			context.moveTo(50, 150);
+			context.lineTo(250, 150);
+			context.lineTo(200, 50);
+        	context.lineTo(100, 50);
+        	context.closePath();
+
+			context.strokeStyle ="black";
+			context.lineWidth = 2;
+			context.stroke();
+
+
+		</script>
+
+		<p>Here's a ...</p>
+		<canvas id="diamond" width="300" height="300"></canvas>
+		<p>Red Diamond!</p>
+
+		<script>
+			let diamondCanvas = document.getElementById("diamond");
+			let contextD = diamondCanvas.getContext("2d");
+
+			contextD.beginPath();
+			contextD.moveTo(150, 50);
+			contextD.lineTo(250, 150);
+			contextD.lineTo(150, 250);
+        	contextD.lineTo(50, 150);
+        	contextD.closePath();
+
+			contextD.strokeStyle ="red";
+			contextD.lineWidth =1;
+			contextD.stroke();
+
+			contextD.fillStyle = "red";
+			contextD.fill();
+		</script>
+
+
+		<p>Here's a ...</p>
+		<canvas id="zigzag" width="300" height="250"></canvas>
+		<p>Zigzag!</p>
+
+		<script>
+			let zzCanvas = document.getElementById("zigzag");
+			let contextZ = zzCanvas.getContext("2d");
+
+			contextZ.beginPath();
+			contextZ.moveTo(100, 25);
+			contextZ.lineTo(300, 35);
+			contextZ.lineTo(100, 45);
+        	contextZ.lineTo(300, 55);
+			contextZ.lineTo(100, 65);
+        	contextZ.lineTo(300, 75);
+			contextZ.lineTo(100, 85);
+			contextZ.lineTo(300, 95);
+        	contextZ.lineTo(100, 105);
+			contextZ.lineTo(300, 115);
+			contextZ.lineTo(100, 125);
+			contextZ.lineTo(300, 135);
+			contextZ.lineTo(100, 145);
+        	contextZ.lineTo(300, 155);
+			contextZ.lineTo(100, 165);
+
+			contextZ.strokeStyle ="black";
+			contextZ.lineWidth =2;
+			contextZ.stroke();
+
+		</script>
+
+
+		<p>Here's a ...</p>
+		<canvas id="spiral" width="600" height="400"></canvas>
+		<p>Spiral!</p>
+
+		<script>
+			let spiralCanvas = document.getElementById ("spiral");
+			let contextS =spiralCanvas.getContext("2d");
+
+			let startX=250;
+			let startY= 225;
+
+			let numSegments = 100;
+			let angleIncrement = 15;
+			let radiusIncrement = 2;
+
+			contextS.beginPath();
+			contextS.moveTo(startX, startY);
+
+			for (let i=0; i< numSegments; i++) {
+				let angle = (angleIncrement * i) * (Math.PI /180);
+
+				let x = startX + Math.cos(angle) * (i * radiusIncrement);
+				let y = startY + Math.sin(angle) * (i * radiusIncrement);
+
+				contextS.lineTo(x,y);
+			}
+
+			contextS.strokeStyle ="black";
+			contextS.lineWidth = 2;
+			contextS.stroke();
+
+		</script>
+
+
+		<p>Here's a ...</p>
+		<canvas id="star" width="400" height="400"></canvas>
+		<p>Star!</p>
+
+		<script>
+			let starCanvas = document.getElementById("star");
+			let contextSt = starCanvas.getContext("2d");
+
+			let numPoints = 8;
+			let outerRadius = 100;
+			let innerRadius = 50;
+			let centerX = starCanvas.width / 2;
+			let centerY = starCanvas.height / 2;
+			let angleIncrement2 = Math.PI / numPoints;
+
+			contextSt.beginPath();
+
+			for (let i=0; i< numPoints * 2; i++) {
+				let angle = i * angleIncrement2;
+
+				let radius = (i % 2 === 0 )? outerRadius : innerRadius;
+
+				let x = centerX + Math.cos(angle) * radius;
+				let y = centerY + Math.sin(angle) * radius;
+
+				if (i === 0) {
+                contextSt.moveTo(x, y);
+            } else {
+				contextSt.lineTo(x,y);
+			}
+			}
+
+			contextSt.closePath();
+
+			contextSt.strokeStyle = "yellow";
+			contextSt.lineWidth = 2; // Set line width
+        	contextSt.stroke();
+
+			contextSt.fillStyle ="yellow";
+			contextSt.fill();
+		</script>
+
+
+
+		<main>
+
+            
+
+		</main>
+
+		
+	</body>
+</html>
