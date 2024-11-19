@@ -1,0 +1,38 @@
+/*
+Author: Marissa Bell
+Date: 11/17/24
+File Name: breakout.css
+*/
+
+/* CSS Reset */
+body, header, nav, main, footer, img, h1, h3, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* 
+you can style the canvas element (id=myCanvas) by using 
+ #myCanvas {
+    border-style: solid;
+}
+ but in this case we only have one canvas so you can use
+ canvas {
+  border-style: solid;
+}
+*/
+
+canvas {
+    border-style: solid;
+    border-color: darkgoldenrod;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    background-color: peachpuff;
+}
+
+h1{
+    text-align: center;
+    padding: 1%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
