@@ -9,13 +9,10 @@
 
 // get the canvas element from the DOM.
 const canvas = document.getElementById("myCanvas");
-
 const ctx = canvas.getContext("2d");
 
-//To draw a ball use x position, y postion and radius
+// Ball parameters
 let ballRadius = 15, xPos = canvas.width / 2, yPos = canvas.height / 2;
-
-//xy values used to move the ball around the screen
 let xMoveDist = 3, yMoveDist = 3;
 
 //set dimensions of paddle
@@ -27,50 +24,54 @@ let xPaddle = (canvas.width - paddleWidth) /2; // sets the inital position of th
 let moveLeft = false; // Indicates if the left arrow key is pressed
 let moveRight = false; // Indicates if the right arrow key is pressed
 
+// Brick parameters
+const brickRows = 4;
+const brickColumns = 6;
+const brickWidth = 90;
+const brickHeight = 25;
+const brickPadding = 10;
+const brickTopOffset = 40;
+const brickLeftOffset = 5;
+
+let bricks = [];
+
+// Function to initialize the bricks
+function initializeBricks() {
+  for (let c = 0; c < brickColumns; c++) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRows; r++) {
+      bricks[c][r] = { x: 0, y: 0, status: 1};
+    }
+  }
+}
+
+// Function to draw the bricks
+function drawBricks() {
+  for (let c = 0; c < brickColumns; c++) {
+    for (let r = 0; r < brickRows; r++) {
+      if (bricks[c][r].status == 1) {//if the brick is visible
+        let brickX =brickLeftOffset + (c * (brickWidth + brickPadding));
+        let brickY = brickTopOffset + (r * (brickHeight + brickPadding));
+        bricks[c][r].x = brickX;
+        bricks[c][r].y = brickY;
+
+        ctx.fillStyle = "#0095DD"; //Brick color
+        ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
+      }
+    }
+  }
+}
+
+
 //function that draws the ball inside the box
-ballRender=()=>{
+function ballRender() {
   ctx.beginPath();
   ctx.fillStyle = "Purple";
   //circular arc is created. It starts at 0, and ends at 2pi (360 degrees)
   ctx.arc(xPos, yPos, ballRadius, 0, Math.PI * 2);
-  //default color is used for the fill of the circular path
   ctx.fill();
   ctx.closePath();
 }
-
-
-/*draw function executes where the ball is being drawn
-in each frame of animation as it calls the ballRender function*/
-draw=()=> {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ballRender();
-  paddle();
-  /* x and y positions will send the ball flying
-  now that the xMoveDist and yMoveDist is included*/
-  xPos += xMoveDist;
-  yPos += yMoveDist;
-
-  if (xPos > canvas.width - ballRadius || xPos < ballRadius) {
-    xMoveDist = -xMoveDist;
-  }
-
-  if (yPos > canvas.height - ballRadius || yPos < ballRadius) {
-    yMoveDist = -yMoveDist;
-  }
-  if (moveLeft && xPaddle > 0) {
-    xPaddle -= 3;
-  }
-  if (moveRight && xPaddle < canvas.width - paddleWidth) {
-    xPaddle += 3;
-  }
-
-};
-
-
-// returns an interval ID and determines how often to refresh the screen //
-const refreshRate = 40;
-const intervalID = setInterval(draw, refreshRate);
-
 
 //Function to draw the paddle and set it's position
 function paddle () {
@@ -78,6 +79,63 @@ function paddle () {
   ctx.fillRect (xPaddle, canvas.height - paddleHeight, paddleWidth, paddleHeight);
 
 }
+
+/*draw function executes where the ball is being drawn
+in each frame of animation as it calls the ballRender function*/
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ballRender();
+  paddle();
+  drawBricks();
+
+  // Ball movement
+  xPos += xMoveDist;
+  yPos += yMoveDist;
+
+  if (xPos > canvas.width - ballRadius || xPos < ballRadius) {
+    xMoveDist = -xMoveDist;
+  }
+
+  if (yPos < ballRadius) {
+    yMoveDist = -yMoveDist;
+  }
+  
+  if (yPos + ballRadius > canvas.height - paddleHeight) { // If ball is at the height of the paddle
+    if (xPos > xPaddle && xPos < xPaddle + paddleWidth) { // If the ball is within the bounds of the paddle
+      yMoveDist = -yMoveDist; // Bounce the ball upwards
+    } else {
+      // Game over, ball missed the paddle
+      clearInterval(intervalID); // Stop the game loop
+      document.body.innerHTML = "<h1>Game Over! You missed the paddle.</h1>";
+    }
+  }
+
+  // Ball and brick collision detection
+  for (let c = 0; c < brickColumns; c++) {
+  for (let r = 0; r < brickRows; r++) {
+    let brick = bricks[c][r];
+    if (brick.status == 1 ) {
+      if (xPos > brick.x && xPos < brick.x +brickWidth && yPos > brick.y && yPos < brick.y + brickHeight){
+        yMoveDist = -yMoveDist;
+        brick.status = 0;
+      }
+    }
+  }
+}
+
+// Paddle movement based on pressing arrow keys
+if (moveLeft && xPaddle > 0) { 
+  xPaddle -= 5;
+}
+if (moveRight && xPaddle <canvas.width - paddleWidth){
+  xPaddle += 5;
+}
+      
+};
+
+// returns an interval ID and determines how often to refresh the screen //
+const refreshRate = 40;
+const intervalID = setInterval(draw, refreshRate);
 
 
 function handleKeyDown (event){
@@ -98,6 +156,8 @@ function handleKeyUp (event){
     moveRight = false;
   }
 }
+
+initializeBricks();
 
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
